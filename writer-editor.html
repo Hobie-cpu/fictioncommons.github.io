@@ -19,6 +19,214 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    .outline-toggle {
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 120;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-family: inherit;
+      color: #37352f;
+      background: #f7f6f3;
+      border: 1px solid rgba(55, 53, 47, 0.12);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s ease, border-color 0.15s ease;
+    }
+
+    .outline-toggle:hover {
+      background: #efedea;
+      border-color: rgba(55, 53, 47, 0.2);
+    }
+
+    .outline-toggle:active {
+      background: #e8e6e3;
+    }
+
+    .outline-toggle[aria-expanded="true"] {
+      background: #ebe9e6;
+      border-color: rgba(55, 53, 47, 0.22);
+    }
+
+    .outline-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: rgba(15, 15, 15, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .outline-backdrop.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .outline-panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 110;
+      width: min(320px, 92vw);
+      height: 100%;
+      background: #fafaf9;
+      border-right: 1px solid rgba(55, 53, 47, 0.1);
+      box-shadow: 4px 0 32px rgba(15, 15, 15, 0.08);
+      display: flex;
+      flex-direction: column;
+      transform: translateX(-100%);
+      transition: transform 0.22s ease;
+    }
+
+    .outline-panel.is-open {
+      transform: translateX(0);
+    }
+
+    .outline-panel-header {
+      flex-shrink: 0;
+      padding: 56px 16px 12px;
+      border-bottom: 1px solid rgba(55, 53, 47, 0.08);
+    }
+
+    .outline-panel-header h2 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #37352f;
+      letter-spacing: 0.02em;
+    }
+
+    .outline-panel-header p {
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(55, 53, 47, 0.55);
+      line-height: 1.45;
+    }
+
+    .outline-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 12px 100px;
+    }
+
+    .outline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      padding: 8px 8px;
+      background: #fff;
+      border: 1px solid rgba(55, 53, 47, 0.08);
+      border-radius: 6px;
+    }
+
+    .outline-item-level {
+      flex-shrink: 0;
+      padding: 4px 6px;
+      font-size: 12px;
+      font-family: inherit;
+      color: #37352f;
+      background: #f7f6f3;
+      border: 1px solid rgba(55, 53, 47, 0.12);
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .outline-item-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .outline-item-input {
+      width: 100%;
+      padding: 4px 0;
+      font-size: 14px;
+      line-height: 1.45;
+      font-family: inherit;
+      color: #37352f;
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+
+    .outline-item-input::placeholder {
+      color: rgba(55, 53, 47, 0.35);
+    }
+
+    .outline-item-remove {
+      flex-shrink: 0;
+      padding: 2px 6px;
+      font-size: 12px;
+      line-height: 1.4;
+      font-family: inherit;
+      color: rgba(55, 53, 47, 0.45);
+      background: transparent;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .outline-item-remove:hover {
+      color: #c45c5c;
+      background: rgba(196, 92, 92, 0.08);
+    }
+
+    .outline-add-row {
+      flex-shrink: 0;
+      padding: 0 12px 16px;
+    }
+
+    .outline-add {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 13px;
+      font-family: inherit;
+      color: #37352f;
+      background: #fff;
+      border: 1px dashed rgba(55, 53, 47, 0.2);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .outline-add:hover {
+      background: #f7f6f3;
+      border-color: rgba(55, 53, 47, 0.28);
+    }
+
+    .outline-tree {
+      padding-left: 0;
+    }
+
+    .outline-tree li {
+      list-style: none;
+      position: relative;
+      padding: 4px 0 4px 0;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #37352f;
+      border-radius: 4px;
+    }
+
+    .outline-tree li[data-level="1"] { padding-left: 0; font-weight: 600; }
+    .outline-tree li[data-level="2"] { padding-left: 14px; font-weight: 500; }
+    .outline-tree li[data-level="3"] { padding-left: 28px; font-weight: 400; }
+    .outline-tree li[data-level="4"] { padding-left: 42px; font-weight: 400; font-size: 13px; }
+    .outline-tree li[data-level="5"] { padding-left: 56px; font-weight: 400; font-size: 13px; }
+    .outline-tree li[data-level="6"] { padding-left: 70px; font-weight: 400; font-size: 12px; color: rgba(55, 53, 47, 0.88); }
+
+    .outline-tree .level-tag {
+      display: inline-block;
+      margin-right: 6px;
+      padding: 0 5px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(55, 53, 47, 0.45);
+      vertical-align: middle;
+    }
+
     .page {
       display: flex;
       flex-direction: column;
@@ -101,6 +309,27 @@
   </style>
 </head>
 <body>
+  <button type="button" class="outline-toggle" id="outlineToggle" aria-expanded="false" aria-controls="outlinePanel">
+    纲要
+  </button>
+  <div class="outline-backdrop" id="outlineBackdrop" aria-hidden="true"></div>
+  <aside class="outline-panel" id="outlinePanel" role="dialog" aria-label="写作纲要">
+    <div class="outline-panel-header">
+      <h2>纲要</h2>
+      <p>为每条设置分级（1 最粗，6 最细），在下方列表中编辑；右侧为树状预览。</p>
+    </div>
+    <div class="outline-list" id="outlineEditorList"></div>
+    <div class="outline-add-row">
+      <button type="button" class="outline-add" id="outlineAddBtn">＋ 添加纲要条目</button>
+    </div>
+    <div class="outline-panel-header" style="border-top: 1px solid rgba(55, 53, 47, 0.08); border-bottom: none;">
+      <h2 style="font-size: 13px;">预览</h2>
+    </div>
+    <div class="outline-list" style="padding-top: 0;">
+      <ul class="outline-tree" id="outlinePreview"></ul>
+    </div>
+  </aside>
+
   <div class="page">
     <textarea
       id="editor"
@@ -118,9 +347,157 @@
 
   <script>
     (function () {
+      var STORAGE_KEY = "writer-editor-outline-v1";
       var editor = document.getElementById("editor");
       var countNum = document.getElementById("countNum");
       var beautifyBtn = document.getElementById("beautify");
+      var outlineToggle = document.getElementById("outlineToggle");
+      var outlineBackdrop = document.getElementById("outlineBackdrop");
+      var outlinePanel = document.getElementById("outlinePanel");
+      var outlineEditorList = document.getElementById("outlineEditorList");
+      var outlinePreview = document.getElementById("outlinePreview");
+      var outlineAddBtn = document.getElementById("outlineAddBtn");
+
+      var outlineItems = [];
+
+      function uid() {
+        return "o" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+      }
+
+      function loadOutline() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return;
+          var data = JSON.parse(raw);
+          if (Array.isArray(data)) outlineItems = data;
+        } catch (e) {}
+      }
+
+      function saveOutline() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(outlineItems));
+        } catch (e) {}
+      }
+
+      function renderPreview() {
+        outlinePreview.innerHTML = "";
+        for (var i = 0; i < outlineItems.length; i++) {
+          var it = outlineItems[i];
+          var text = (it.text || "").trim();
+          if (!text) continue;
+          var li = document.createElement("li");
+          var lv = Math.min(6, Math.max(1, parseInt(it.level, 10) || 1));
+          li.setAttribute("data-level", String(lv));
+          var tag = document.createElement("span");
+          tag.className = "level-tag";
+          tag.textContent = "L" + lv;
+          li.appendChild(tag);
+          li.appendChild(document.createTextNode(text));
+          outlinePreview.appendChild(li);
+        }
+        if (!outlinePreview.children.length) {
+          var empty = document.createElement("li");
+          empty.style.color = "rgba(55, 53, 47, 0.4)";
+          empty.style.fontSize = "13px";
+          empty.style.paddingLeft = "0";
+          empty.textContent = "（暂无条目，点击「添加纲要条目」）";
+          outlinePreview.appendChild(empty);
+        }
+      }
+
+      function removeItem(id) {
+        outlineItems = outlineItems.filter(function (x) { return x.id !== id; });
+        saveOutline();
+        renderEditorList();
+        renderPreview();
+      }
+
+      function renderEditorList() {
+        outlineEditorList.innerHTML = "";
+        for (var i = 0; i < outlineItems.length; i++) {
+          (function (item) {
+            var row = document.createElement("div");
+            row.className = "outline-item";
+
+            var sel = document.createElement("select");
+            sel.className = "outline-item-level";
+            sel.setAttribute("aria-label", "分级");
+            for (var L = 1; L <= 6; L++) {
+              var opt = document.createElement("option");
+              opt.value = String(L);
+              opt.textContent = L + " 级";
+              sel.appendChild(opt);
+            }
+            sel.value = String(Math.min(6, Math.max(1, parseInt(item.level, 10) || 1)));
+
+            sel.addEventListener("change", function () {
+              item.level = parseInt(sel.value, 10);
+              saveOutline();
+              renderPreview();
+            });
+
+            var body = document.createElement("div");
+            body.className = "outline-item-body";
+            var inp = document.createElement("input");
+            inp.type = "text";
+            inp.className = "outline-item-input";
+            inp.placeholder = "纲要标题…";
+            inp.value = item.text || "";
+            inp.addEventListener("input", function () {
+              item.text = inp.value;
+              saveOutline();
+              renderPreview();
+            });
+
+            var rm = document.createElement("button");
+            rm.type = "button";
+            rm.className = "outline-item-remove";
+            rm.setAttribute("aria-label", "删除");
+            rm.textContent = "删除";
+            rm.addEventListener("click", function () {
+              removeItem(item.id);
+            });
+
+            body.appendChild(inp);
+            row.appendChild(sel);
+            row.appendChild(body);
+            row.appendChild(rm);
+            outlineEditorList.appendChild(row);
+          })(outlineItems[i]);
+        }
+      }
+
+      function addOutlineItem() {
+        outlineItems.push({ id: uid(), level: 1, text: "" });
+        saveOutline();
+        renderEditorList();
+        renderPreview();
+        var inputs = outlineEditorList.querySelectorAll(".outline-item-input");
+        if (inputs.length) inputs[inputs.length - 1].focus();
+      }
+
+      function setOutlineOpen(open) {
+        outlinePanel.classList.toggle("is-open", open);
+        outlineBackdrop.classList.toggle("is-open", open);
+        outlineToggle.setAttribute("aria-expanded", open ? "true" : "false");
+        outlineBackdrop.setAttribute("aria-hidden", open ? "false" : "true");
+      }
+
+      outlineToggle.addEventListener("click", function () {
+        setOutlineOpen(!outlinePanel.classList.contains("is-open"));
+      });
+
+      outlineBackdrop.addEventListener("click", function () {
+        setOutlineOpen(false);
+      });
+
+      outlineAddBtn.addEventListener("click", addOutlineItem);
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && outlinePanel.classList.contains("is-open")) {
+          setOutlineOpen(false);
+        }
+      });
 
       function getCharCount(text) {
         return text.length;
@@ -151,6 +528,10 @@
         updateCount();
         editor.focus();
       });
+
+      loadOutline();
+      renderEditorList();
+      renderPreview();
 
       updateCount();
     })();
